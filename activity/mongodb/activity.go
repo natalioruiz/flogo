@@ -101,19 +101,23 @@ func (a *MongoDbActivity) Eval(ctx activity.Context) (done bool, err error) {
 		ctx.SetOutput(ovOutput, val)
 
 	case methodGetAll:
-		result, err := coll.Find(context.Background(), nil)
+		cur, err := coll.Find(context.Background(), nil)
 		if err != nil {
 			return false, err
 		}
-		val := make(map[string]interface{})
-		err = result.Decode(val)
-		if err != nil {
-			return false, err
+		var array []interface{}
+		defer cur.Close(context.Background())
+		for cur.Next(context.Background()) {
+			val := make(map[string]interface{})
+			err = cur.Decode(val)
+			if err != nil {
+				return false, err
+			}
+			array = append(array, val)
 		}
+		activityLog.Debugf("Get Results $#v", array)
 
-		activityLog.Debugf("Get Results $#v", result)
-
-		ctx.SetOutput(ovOutput, val)
+		ctx.SetOutput(ovOutput, array)
 
 	case methodDelete:
 		result, err := coll.DeleteMany(
