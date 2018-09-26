@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/mongodb/mongo-go-driver/bson"
-	"github.com/mongodb/mongo-go-driver/mongo"
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
+	"github.com/mongodb/mongo-go-driver/bson"
+	"github.com/mongodb/mongo-go-driver/mongo"
 )
 
 // ActivityLog is the default logger for the Log Activity
@@ -32,7 +32,7 @@ const (
 	ivData     = "data"
 
 	ovOutput = "output"
-	ovCount = "count"
+	ovCount  = "count"
 )
 
 func init() {
@@ -73,10 +73,10 @@ func (a *MongoDbActivity) Eval(ctx activity.Context) (done bool, err error) {
 	//todo implement shared sessions
 	// client, err := mongo.NewClient(connectionURI)
 	/*
-	The above function was giving below error;
-	"data not inserted topology is closed"
+		The above function was giving below error;
+		"data not inserted topology is closed"
 	*/
-	
+
 	client, err := mongo.Connect(context.Background(), connectionURI, nil)
 	if err != nil {
 		activityLog.Errorf("Connection error: %v", err)
@@ -101,9 +101,12 @@ func (a *MongoDbActivity) Eval(ctx activity.Context) (done bool, err error) {
 		ctx.SetOutput(ovOutput, val)
 
 	case methodGetAll:
-		result := coll.Find(context.Background(), nil))
+		result, err := coll.Find(context.Background(), nil)
+		if err != nil {
+			return false, err
+		}
 		val := make(map[string]interface{})
-		err := result.Decode(val)
+		err = result.Decode(val)
 		if err != nil {
 			return false, err
 		}
