@@ -2,6 +2,7 @@
   "name": "greetings",
   "version": "0.0.1",
   "type": "flogo:activity",
+  "ref": "github.com/natalioruiz/activity/greetings",
   "description": "Flogo Greetings message",
   "author": "Natalio Ruiz <natalio.ruiz@siriusxm.com>",
   "inputs":[
@@ -9,12 +10,12 @@
       "name": "firstName",
       "type": "string"
     },
-	{
+    {
       "name": "lastName",
       "type": "string"
-	}
+    }
   ],
-  "outputs": [
+  "output": [
     {
       "name": "message",
       "type": "string"
