@@ -1,0 +1,23 @@
+{
+  "name": "greetings",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "description": "Flogo Greetings message",
+  "author": "Natalio Ruiz <natalio.ruiz@siriusxm.com>",
+  "inputs":[
+    {
+      "name": "firstName",
+      "type": "string"
+    },
+	{
+      "name": "lastName",
+      "type": "string"
+	}
+  ],
+  "outputs": [
+    {
+      "name": "message",
+      "type": "string"
+    }
+  ]
+}
