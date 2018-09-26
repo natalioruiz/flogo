@@ -6,7 +6,7 @@
   "description": "Flogo Greetings message",
   "title": "Generate random uuid value",
   "author": "Natalio Ruiz <natalio.ruiz@siriusxm.com>",
-  "inputs":[
+  "input":[
     {
       "name": "firstName",
       "type": "string"
