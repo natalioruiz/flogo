@@ -113,6 +113,7 @@ func (a *MongoDbActivity) Eval(ctx activity.Context) (done bool, err error) {
 			if err != nil {
 				return false, err
 			}
+			delete(val, "_id")
 			array = append(array, val)
 		}
 		activityLog.Debugf("Get Results $#v", array)
