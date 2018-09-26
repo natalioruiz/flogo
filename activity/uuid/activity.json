@@ -2,7 +2,7 @@
   "name": "uuid",
   "version": "0.0.1",
   "type": "flogo:activity",
-  "ref": "github.com/natalioruiz/activity/uuid",
+  "ref": "github.com/natalioruiz/flogo/activity/uuid",
   "description": "Generate a random UUID",
   "title": "UUID Generator",
   "author": "Natalio Ruiz <natalio.ruiz@siriusxm.com>",
