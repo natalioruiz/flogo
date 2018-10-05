@@ -1,11 +1,11 @@
 {
   "name": "rest",
   "type": "flogo:trigger",
-  "ref": "github.com/ruiznato/flogo/trigger/rest",
+  "ref": "github.com/natalioruiz/flogo/trigger/rest",
   "version": "0.0.1",
   "title": "HTTP Message (with Headers)",
   "description": "REST Trigger",
-  "homepage": "https://github.com/ruiznato/flogo/tree/master/trigger/rest",
+  "homepage": "https://github.com/natalioruiz/flogo/tree/master/trigger/rest",
   "settings": [
     {
       "name": "port",
