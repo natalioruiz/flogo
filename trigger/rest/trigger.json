@@ -45,8 +45,8 @@
       "type": "any"
     },
     {
-      "name": "headers",
-      "type": "any"
+      "name": "source",
+      "type": "string"
     }
   ],
   "handler": {
