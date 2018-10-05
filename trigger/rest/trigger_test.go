@@ -4,9 +4,9 @@ import (
 	"io/ioutil"
 )
 
-var jsonTestMetadata = getTestJSONMetadata()
+var jsonTestMetadata = getTestJsonMetadata()
 
-func getTestJSONMetadata() string {
+func getTestJsonMetadata() string {
 	jsonMetadataBytes, err := ioutil.ReadFile("trigger.json")
 	if err != nil {
 		panic("No Json Metadata found for trigger.json path")
