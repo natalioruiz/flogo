@@ -1,0 +1,21 @@
+{
+  "name": "now",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "ref": "github.com/natalioruiz/flogo/activity/now",
+  "description": "Get System Time",
+  "title": "Now",
+  "author": "Natalio Ruiz <natalio.ruiz@siriusxm.com>",
+  "input":[
+    {
+      "name": "format",
+      "type": "string"
+    }
+  ],
+  "output": [
+    {
+      "name": "now",
+      "type": "string"
+    }
+  ]
+}
