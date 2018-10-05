@@ -195,6 +195,7 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler) httprouter.Hand
 
 		var replyData interface{}
 		var replyCode int
+		var replyHeaders map[string]interface{}
 
 		if len(results) != 0 {
 			dataAttr, ok := results["data"]
@@ -205,12 +206,22 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler) httprouter.Hand
 			if ok {
 				replyCode, _ = data.CoerceToInteger(codeAttr.Value())
 			}
+			headersAttr, ok := results["headers"]
+			if ok {
+				replyHeaders = headersAttr.Value().(map[string]interface{})
+			}
 		}
 
 		if err != nil {
 			log.Debugf("REST Trigger Error: %s", err.Error())
 			http.Error(w, err.Error(), http.StatusBadRequest)
 			return
+		}
+
+		if replyHeaders != nil {
+			for k, v := range replyHeaders {
+				w.Header().Set(k, v.(string))
+			}
 		}
 
 		if replyData != nil {
