@@ -1,0 +1,16 @@
+{
+    "name": "base64ToString",
+    "args": [{
+              "name": "base64str",
+              "type": "string"
+            }],
+    "return": {"type": "string"},
+    "help": {
+      "description":"Decodes a base64 encoded string base64str and returns the decoded string.",
+      "usage":"string.base64ToString(<< base64str >>)\nReturn Type\nstring",
+      "example":"string.base64ToString(\"SGVsbG8sIFdvcmxk\")\nReturns\nHello, World"
+    },
+    "wi": {
+        "visible": true
+    }
+}

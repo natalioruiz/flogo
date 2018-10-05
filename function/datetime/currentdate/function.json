@@ -1,0 +1,14 @@
+{
+    "name": "currentDate",
+    "args": [],
+    "return": {"type":"string"},
+    "help": {
+        "description": "Returns the current date with UTC time zone.",
+        "example": "datetime.currentDate()\nReturns 2017-05-13+00:00",
+        "usage": "datetime.currentDate()\nReturn Type\nstring"
+    },
+    "wi": {
+        "visible": true
+    }
+
+}

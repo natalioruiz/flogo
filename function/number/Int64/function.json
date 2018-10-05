@@ -1,0 +1,16 @@
+{
+    "name": "int64",
+    "args": [{
+        "name": "input",
+        "type": "any"
+    }],
+    "return": {"type": "integer"},
+    "help": {
+        "description": "Converts the input to an integer.",
+        "example": "number.int64(\"123\")\nReturns\n123",
+        "usage": "number.int64(<< string1 >>)\nReturn Type\ninteger"
+    },
+    "wi": {
+        "visible": true
+    }
+}

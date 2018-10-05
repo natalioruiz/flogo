@@ -1,0 +1,13 @@
+{
+    "name": "dateFormat",
+    "args": [],
+    "return": {"type": "string"},
+    "help": {
+      "description":"Returns a default date format.",
+      "usage":"string.dateFormat()\nReturns\nstring",
+      "example":"string.dateFormat()\nReturn Type\n2006-01-02-07:00"
+    },
+    "wi": {
+        "visible": true
+    }
+}

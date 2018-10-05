@@ -1,0 +1,20 @@
+{
+    "name": "index",
+    "args": [{
+        "name": "str",
+        "type": "string"
+        },
+        {"name": "substr",
+        "type": "string"
+        }
+    ],
+    "return": {"type": "integer"},
+    "help": {
+        "description":"Returns the index of the first occurrence of the substring, or -1 if the substring is not present.",
+        "usage":"string.index(<< str >>, << substr >>)\nReturn Type\nint",
+        "example":"string.index(\"TIBCO Web Integrator\", \"Web\")\nReturns\n6"
+    },
+    "wi": {
+        "visible": true
+    }
+}

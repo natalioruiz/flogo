@@ -1,0 +1,23 @@
+{
+    "name": "formatTime",
+    "args": [
+        {
+            "name": "time",
+            "type": "string"
+        },
+        {
+            "name": "format",
+            "type": "string"
+        }
+    ],
+    "return": {"type": "string"},
+    "help": {
+        "description": "Format the time according to the specified format.",
+        "example": "datetime.formatTime（\"10:11:05.00000\", string.timeFormat()）\nReturns\n 10:11:05+00:00",
+        "usage": "datetime.formatTime(time,format)\nReturn Type\nstring"
+    },
+    "wi": {
+        "visible": true
+    }
+
+}

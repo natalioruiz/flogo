@@ -1,0 +1,22 @@
+{
+    "name": "equalsIgnoreCase",
+    "args": [
+      {
+          "name": "str",
+          "type": "string"
+      },
+      {
+          "name": "str2",
+          "type": "string"
+      }
+    ],
+    "return": {"type": "boolean"},
+    "help": {
+      "description":"Returns whether those two string are equals ignore case",
+      "usage":"string.equalsIgnoreCase(<< str >>, <<str2>>)\nReturn Type\nboolean",
+      "example":"string.equalsIgnoreCase(\"TIBCO web Integrator\", \"TIBCO Web Integrator\")\nReturns\ntrue"
+    },
+    "wi": {
+        "visible": true
+    }
+}

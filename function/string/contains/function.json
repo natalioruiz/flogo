@@ -1,0 +1,20 @@
+{
+    "name": "contains",
+    "args": [{
+              "name": "str",
+              "type": "string"
+            },
+            {
+              "name": "substr",
+              "type": "string"
+            }],
+    "return": {"type": "boolean"},
+    "help": {
+      "description":"Returns whether a substring is contained in another string.",
+      "usage":"string.contains(<< str >>, << substr >>)\nReturn Type\nbool",
+      "example":"string.contains(\"TIBCO Web Integrator\", \"Integration\")\nReturns\ntrue"
+    },
+    "wi": {
+        "visible": true
+    }
+}

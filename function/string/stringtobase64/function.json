@@ -1,0 +1,16 @@
+{
+    "name": "stringToBase64",
+    "args": [{
+              "name": "str",
+              "type": "string"
+            }],
+    "return": {"type": "string"},
+    "help": {
+      "description":"Returns a base64 encoded string of the input.",
+      "usage":"string.stringToBase64(<< str >>)\nReturn Type\nstring",
+      "example":"string.stringToBase64(\"Hello, World\")\nReturns\nSGVsbG8sIFdvcmxk"
+    },
+    "wi": {
+        "visible": true
+    }
+}

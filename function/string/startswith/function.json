@@ -1,0 +1,20 @@
+{
+    "name": "startsWith",
+    "args": [{
+              "name": "str",
+              "type": "string"
+            },
+            {
+              "name": "substr",
+              "type": "string"
+            }],
+    "return": {"type": "boolean"},
+    "help": {
+      "description":"Returns whether a string begins with another string.",
+      "usage":"string.startsWith(<< str >>, << substr >>)\nReturn Type\nbool",
+      "example":"string.startsWith(\"TIBCO Web Integrator\", \"TIBCO\")\nReturns true"
+    },
+    "wi": {
+        "visible": true
+    }
+}

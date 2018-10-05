@@ -1,0 +1,16 @@
+{
+    "name": "length",
+    "args": [{
+        "name": "str",
+        "type": "string"
+    }],
+    "return": {"type": "integer"},
+    "help": {
+        "description":"Returns the length of a string.",
+        "usage":"string.length(<< str >>)\nReturn Type\nint",
+        "example":"string.length(\"TIBCO Web Integrator\")\nReturns\n20"
+    },
+    "wi": {
+        "visible": true
+    }
+}

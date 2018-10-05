@@ -1,0 +1,16 @@
+{
+    "name": "len",
+    "args": [{
+        "name": "input",
+        "type": "string"
+    }],
+    "return": {"type": "integer"},
+    "help": {
+        "description": "Return length of string",
+        "example": "number.len(\"123\")\nReturns/3",
+        "usage": "number.len(<< string1 >>)\nReturn Type\ninteger"
+    },
+    "wi": {
+        "visible": false
+    }
+}

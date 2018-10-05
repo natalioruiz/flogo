@@ -1,0 +1,23 @@
+{
+    "name": "formatDatetime",
+    "args": [
+        {
+            "name": "datetime",
+            "type": "string"
+        },
+        {
+            "name": "format",
+            "type": "string"
+        }
+    ],
+    "return": {"type": "string"},
+    "help": {
+        "description": "Format the datetime according to the specified format.",
+        "example": "datetime.formatDatetime（\"2017-04-10T22:17:32.000+0000\", string.datetimeFormat()）\nReturns\n 2017-04-10T22:17:32+00:00",
+        "usage": "datetime.formatDatetime(datetime,format)\nReturn Type\nstring"
+    },
+    "wi": {
+        "visible": true
+    }
+
+}

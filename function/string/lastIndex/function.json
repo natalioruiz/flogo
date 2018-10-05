@@ -1,0 +1,20 @@
+{
+    "name": "lastIndex",
+    "args": [{
+        "name": "str",
+        "type": "string"
+        },
+        {"name": "substr",
+        "type": "string"
+        }
+    ],
+    "return": {"type": "integer"},
+    "help": {
+        "description":"Returns the index of the last occurrence of the substring, or -1 if the substring is not present.",
+        "usage":"string.lastIndex(<< str >>, << substr >>)\nReturn Type\nint",
+        "example":"string.lastIndex(\"Integration with TIBCO Web Integrator\", \"Integrat\")\nReturns\n27"
+    },
+    "wi": {
+        "visible": true
+    }
+}

@@ -1,0 +1,13 @@
+{
+    "name": "timeFormat",
+    "args": [],
+    "return": {"type": "string"},
+    "help": {
+      "description":"Returns a default timeformat.",
+      "usage":"string.timeFormat()\nReturn Type\n15:04:05-07:00",
+      "example":"string.timeFormat()\nReturns\nstring"
+    },
+    "wi": {
+        "visible": true
+    }
+}

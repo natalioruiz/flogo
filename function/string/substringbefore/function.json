@@ -1,0 +1,21 @@
+{
+    "name": "substringBefore",
+    "args": [{
+            "name": "input",
+            "type": "string"
+        },
+        {
+            "name": "beforestr",
+            "type": "string"
+        }
+    ],
+    "return": {"type": "string"},
+    "help": {
+        "description": "Returns the string that follows before the first occurrence of the second string, or a zero length string if the first string does not contain the second string.",
+        "example": "string.substringBefore(\"1999/04/01\", \"/\")\nReturns\n1999",
+        "usage": "string.substringBefore(<< string >>, << before-string >>)\nReturn Type\nstring"
+    },
+    "wi": {
+        "visible": true
+    }
+}

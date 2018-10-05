@@ -1,0 +1,16 @@
+{
+    "name": "trim",
+    "args": [{
+            "name": "str",
+            "type": "string"
+    }],
+    "return": {"type": "string"},
+    "help": {
+      "description":"Trim a string by removing all trailing and leading spaces.",
+      "usage":"string.trim(<< str >>)\nReturn Type\nstring",
+      "example":"string.trim(\" \t\n TIBCO software Inc \n\t\r\n\")\nReturns\nTIBCO software Inc"
+    },
+    "wi": {
+        "visible": true
+    }
+}

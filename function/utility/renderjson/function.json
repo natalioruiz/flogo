@@ -1,0 +1,22 @@
+{
+	"name": "renderJSON",
+	"args": [
+		{
+			"name": "data",
+			"type": "object"
+		},
+		{
+			"name": "pretty-formatting",
+			"type": "boolean"
+		}
+	],
+	"help": {
+		"description": "Converts data to a JSON string",
+		"example": "utility.renderJSON($RestInvoke.responseBody, boolean.false())\nReturns\n{\"FirstName\":\"ABC\",\"LastName\":\"XYZ\"}",
+		"usage": "utility.renderJSON(<< object >>, << pretty formatting >>)\nReturn Type\nstring"
+	},
+	"return": {"type": "string"},
+	"wi": {
+		"visible": true
+	}
+}

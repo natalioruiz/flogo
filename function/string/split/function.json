@@ -1,0 +1,23 @@
+{
+    "name": "split",
+    "args": [{
+        "name": "str",
+        "type": "string"
+        },
+        {"name": "sep",
+        "type": "string"
+        }
+    ],
+    "return": {
+        "type": "string",
+        "array": true
+    },
+    "help": {
+        "description":"Splits a string into an array of substrings.",
+        "usage":"string.split(<< str >>, << sep >>)\nReturn Type\n...string",
+        "example":"string.split(\"TIBCO Web Integrator\", \" \")\nReturns [\"TIBCO\", \"Web\", \"Integrator\"]"
+    },
+    "wi": {
+        "visible": true
+    }
+}

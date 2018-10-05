@@ -1,0 +1,21 @@
+{
+    "name": "regex",
+    "args": [{
+                "name": "pattern",
+                "type": "string"
+            },
+            {
+                "name": "str",
+                "type": "string"
+            }
+    ],
+    "return": {"type": "boolean"},
+    "help": {
+      "description":"Checks whether a regular expression pattern matches a string.",
+      "usage":"string.regex(<< pattern >>, << str >>)\nReturn Type\nbool",
+      "example":"string.regex(\"foo.*\", \"seafood\")\nReturns\ntrue"
+    },
+    "wi": {
+        "visible": true
+    }
+}

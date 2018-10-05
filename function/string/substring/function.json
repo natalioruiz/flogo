@@ -1,0 +1,25 @@
+{
+    "name": "substring",
+    "args": [{
+            "name": "input",
+            "type": "string"
+        },
+        {
+            "name": "index",
+            "type": "integer"
+        },
+        {
+            "name": "length",
+            "type": "integer"
+        }
+    ],
+    "return": {"type":"string"},
+    "help": {
+        "description": "Returns a substring starting at the position specified by the second argument. Character positions are numbered from 0.",
+        "example": "string.substring(\"12345\", 2, 3)\nReturns\n345",
+        "usage": "string.substring(<< string >>, << index >>, << optional length >>)\nReturn Type\nstring"
+    },
+    "wi": {
+        "visible": true
+    }
+}

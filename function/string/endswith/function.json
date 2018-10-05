@@ -1,0 +1,20 @@
+{
+    "name": "endsWith",
+    "args": [{
+              "name": "str",
+              "type": "string"
+            },
+            {
+              "name": "substr",
+              "type": "string"
+            }],
+    "return": {"type": "boolean"},
+    "help": {
+      "description":"Returns whether a string ends with another string.",
+      "usage":"string.endsWith(<< str >>, << substr >>)\nReturn Type\nbool",
+      "example":"string.endsWith(\"TIBCO Web Integrator\", \"Integrator\")\nReturns\ntrue"
+    },
+    "wi": {
+        "visible": true
+    }
+}

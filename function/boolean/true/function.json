@@ -1,0 +1,13 @@
+{
+    "name": "true",
+    "args": [],
+    "return": {"type":"boolean"},
+    "help": {
+      "description":"Always returns true",
+      "usage":"boolean.true()\nReturn Type\nbool",
+      "example":"boolean.true()\nReturns\ntrue"
+    },
+    "wi": {
+        "visible": true
+    }
+}

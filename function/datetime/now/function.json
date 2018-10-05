@@ -1,0 +1,14 @@
+{
+    "name": "now",
+    "args": [],
+    "return": {"type": "string"},
+    "help": {
+        "description": "Returns the current time with UTC timezone.",
+        "example": "datetime.now()\nReturns 2017-05-13T15:59:41+00:00",
+        "usage": "datetime.now()\nReturn Type\nstring"
+    },
+    "wi": {
+        "visible": true
+    }
+
+}
