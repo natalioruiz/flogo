@@ -46,7 +46,7 @@
     },
     {
       "name": "headers",
-      "type": "params"
+      "type": "any"
     }
   ],
   "handler": {
