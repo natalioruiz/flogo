@@ -1,4 +1,4 @@
-package uuid
+package mapper
 
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"

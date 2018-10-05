@@ -1,4 +1,4 @@
-package uuid
+package mapper
 
 import (
 	"io/ioutil"
