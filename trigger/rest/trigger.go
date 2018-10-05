@@ -195,7 +195,6 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler) httprouter.Hand
 
 		var replyData interface{}
 		var replyCode int
-		var replySource string
 
 		if len(results) != 0 {
 			dataAttr, ok := results["data"]
@@ -205,10 +204,6 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler) httprouter.Hand
 			codeAttr, ok := results["code"]
 			if ok {
 				replyCode, _ = data.CoerceToInteger(codeAttr.Value())
-			}
-			sourceAttr, ok := results["source"]
-			if ok {
-				replySource, _ = data.CoerceToString(sourceAttr.Value())
 			}
 		}
 
@@ -234,10 +229,6 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler) httprouter.Hand
 			w.WriteHeader(replyCode)
 		} else {
 			w.WriteHeader(http.StatusOK)
-		}
-
-		if len(replySource) > 0 {
-			w.Header().Set("source", replySource)
 		}
 	}
 }

@@ -1,11 +1,11 @@
 {
-  "name": "rest",
+  "name": "flogo-rest",
   "type": "flogo:trigger",
-  "ref": "github.com/natalioruiz/flogo/trigger/rest",
+  "ref": "github.com/TIBCOSoftware/flogo-contrib/trigger/rest",
   "version": "0.0.1",
-  "title": "HTTP Message (with Headers)",
-  "description": "REST Trigger",
-  "homepage": "https://github.com/natalioruiz/flogo/tree/master/trigger/rest",
+  "title": "Receive HTTP Message",
+  "description": "Simple REST Trigger",
+  "homepage": "https://github.com/TIBCOSoftware/flogo-contrib/tree/master/trigger/rest",
   "settings": [
     {
       "name": "port",
@@ -43,10 +43,6 @@
     {
       "name": "data",
       "type": "any"
-    },
-    {
-      "name": "source",
-      "type": "string"
     }
   ],
   "handler": {
