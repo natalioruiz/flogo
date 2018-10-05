@@ -1,0 +1,21 @@
+{
+  "name": "mapper",
+  "version": "0.0.1",
+  "type": "flogo:activity",
+  "ref": "github.com/natalioruiz/flogo/activity/mapper",
+  "description": "Mapper",
+  "title": "Object Mapper",
+  "author": "Natalio Ruiz <natalio.ruiz@siriusxm.com>",
+  "input":[
+    {
+      "name": "input",
+      "type": "any"
+    }
+  ],
+  "output": [
+    {
+      "name": "output",
+      "type": "any"
+    }
+  ]
+}
