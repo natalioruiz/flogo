@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"net/http/httputil"
 	"net/url"
@@ -208,11 +209,12 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 		results := make(map[string]*data.Attribute)
 		var err error
 		if validHeaders {
-			log.Infof("Schema: %s", schema)
 			validRequest := true
 			if schema != "" {
+
+				jsonData, _ := ioutil.ReadAll(r.Body) //<--- here!
 				requestDump, _ := httputil.DumpRequest(r, true)
-				doc := gojsonschema.NewStringLoader(string(requestDump))
+				doc := gojsonschema.NewStringLoader(string(jsonData))
 				schema := gojsonschema.NewStringLoader(schema)
 
 				log.Infof("Schema: %s", schema)
