@@ -208,6 +208,7 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 		results := make(map[string]*data.Attribute)
 		var err error
 		if validHeaders {
+			log.Infof("Schema: %s", schema)
 			validRequest := true
 			if schema != "" {
 				requestDump, _ := httputil.DumpRequest(r, true)
