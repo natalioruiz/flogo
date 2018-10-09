@@ -7,7 +7,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
@@ -161,13 +160,14 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 
 		// Check the HTTP Header Content-Type
 		contentType := r.Header.Get("Content-Type")
+		var content interface{}
 		switch contentType {
 		case "application/x-www-form-urlencoded":
 			buf := new(bytes.Buffer)
 			buf.ReadFrom(r.Body)
 			s := buf.String()
 			m, err := url.ParseQuery(s)
-			content := make(map[string]interface{}, 0)
+			content = make(map[string]interface{}, 0)
 			if err != nil {
 				log.Errorf("Error while parsing query string: %s", err.Error())
 				http.Error(w, err.Error(), http.StatusBadRequest)
@@ -181,7 +181,6 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 			}
 			triggerData["content"] = content
 		default:
-			var content interface{}
 			err := json.NewDecoder(r.Body).Decode(&content)
 			if err != nil {
 				switch {
@@ -211,7 +210,7 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 			validRequest := true
 			if schema != "" {
 
-				jsonData, _ := ioutil.ReadAll(r.Body) //<--- here!
+				jsonData, _ := json.Marshal(content)
 				doc := gojsonschema.NewStringLoader(string(jsonData))
 				schema := gojsonschema.NewStringLoader(schema)
 
