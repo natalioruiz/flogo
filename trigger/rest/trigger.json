@@ -11,10 +11,6 @@
       "name": "port",
       "type": "integer",
       "required": true
-    },
-    {
-      "name": "validator",
-      "type": "any"
     }
   ],
   "output": [
@@ -71,7 +67,7 @@
         "type": "string"
       },
       {
-        "name": "headers",
+        "name": "requiredHeaders",
         "type": "string"
       }
     ]

@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io"
 	"net/http"
@@ -80,6 +81,8 @@ func (t *RestTrigger) Initialize(ctx trigger.InitContext) error {
 
 		method := strings.ToUpper(handler.GetStringSetting("method"))
 		path := handler.GetStringSetting("path")
+		schema := handler.GetStringSetting("schema")
+		requiredHeaders := handler.GetStringSetting("requiredHeaders")
 
 		log.Debugf("Registering handler [%s: %s]", method, path)
 
@@ -89,7 +92,7 @@ func (t *RestTrigger) Initialize(ctx trigger.InitContext) error {
 		}
 
 		//router.OPTIONS(path, handleCorsPreflight) // for CORS
-		router.Handle(method, path, newActionHandler(t, handler))
+		router.Handle(method, path, newActionHandler(t, handler, schema, requiredHeaders))
 	}
 
 	log.Debugf("Configured on port %s", t.config.Settings["port"])
@@ -121,7 +124,7 @@ type IDResponse struct {
 	ID string `json:"id"`
 }
 
-func newActionHandler(rt *RestTrigger, handler *trigger.Handler) httprouter.Handle {
+func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, requiredHeaders string) httprouter.Handle {
 
 	return func(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 
@@ -191,7 +194,22 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler) httprouter.Hand
 			triggerData["content"] = content
 		}
 
-		results, err := handler.Handle(context.Background(), triggerData)
+		validRequest := true
+		errorMessage := ""
+		for _, rh := range strings.Split(requiredHeaders, ",") {
+			if _, ok := header[strings.Trim(rh, "")]; !ok {
+				validRequest = false
+				errorMessage = fmt.Sprintf("Missing required header: %s", rh)
+				break
+			}
+		}
+		results := make(map[string]*data.Attribute)
+		var err error
+		if validRequest {
+			results, err = handler.Handle(context.Background(), triggerData)
+		} else {
+			err = errors.New(errorMessage)
+		}
 
 		var replyData interface{}
 		var replyCode int
