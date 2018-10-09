@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"net/http/httputil"
 	"net/url"
 	"strings"
 
@@ -16,6 +17,7 @@ import (
 	"github.com/TIBCOSoftware/flogo-lib/core/trigger"
 	"github.com/TIBCOSoftware/flogo-lib/logger"
 	"github.com/julienschmidt/httprouter"
+	"github.com/xeipuuv/gojsonschema"
 )
 
 const (
@@ -194,19 +196,40 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 			triggerData["content"] = content
 		}
 
-		validRequest := true
+		validHeaders := true
 		errorMessage := ""
 		for _, rh := range strings.Split(requiredHeaders, ",") {
 			if _, ok := header[strings.TrimSpace(rh)]; !ok {
-				validRequest = false
+				validHeaders = false
 				errorMessage = fmt.Sprintf("Missing required header: '%s'", rh)
 				break
 			}
 		}
 		results := make(map[string]*data.Attribute)
 		var err error
-		if validRequest {
-			results, err = handler.Handle(context.Background(), triggerData)
+		if validHeaders {
+			validRequest := true
+			if schema != "" {
+				requestDump, _ := httputil.DumpRequest(r, true)
+				doc := gojsonschema.NewStringLoader(string(requestDump))
+				schema := gojsonschema.NewStringLoader(schema)
+				result, err := gojsonschema.Validate(schema, doc)
+				if err != nil {
+					validRequest = false
+				} else {
+					if !result.Valid() {
+						validRequest = false
+						var errorsList []string
+						for _, e := range result.Errors() {
+							errorsList = append(errorsList, fmt.Sprintf("%s", e))
+						}
+						err = errors.New(strings.Join(errorsList, "\n"))
+					}
+				}
+			}
+			if validRequest {
+				results, err = handler.Handle(context.Background(), triggerData)
+			}
 		} else {
 			err = errors.New(errorMessage)
 		}
