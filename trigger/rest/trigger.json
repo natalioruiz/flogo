@@ -2,7 +2,7 @@
   "name": "rest",
   "type": "flogo:trigger",
   "ref": "github.com/natalioruiz/flogo/trigger/rest",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "title": "HTTP Message (with Headers)",
   "description": "Simple REST Trigger",
   "homepage": "https://github.com/natalioruiz/flogo/tree/master/trigger/rest",
