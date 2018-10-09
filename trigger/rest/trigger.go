@@ -197,9 +197,9 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 		validRequest := true
 		errorMessage := ""
 		for _, rh := range strings.Split(requiredHeaders, ",") {
-			if _, ok := header[strings.Trim(rh, "")]; !ok {
+			if _, ok := header[strings.TrimSpace(rh)]; !ok {
 				validRequest = false
-				errorMessage = fmt.Sprintf("Missing required header: %s", rh)
+				errorMessage = fmt.Sprintf("Missing required header: '%s'", rh)
 				break
 			}
 		}
