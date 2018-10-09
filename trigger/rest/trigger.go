@@ -213,6 +213,9 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 				requestDump, _ := httputil.DumpRequest(r, true)
 				doc := gojsonschema.NewStringLoader(string(requestDump))
 				schema := gojsonschema.NewStringLoader(schema)
+
+				log.Infof("Schema: %s", schema)
+				log.Infof("Body: %s", string(requestDump))
 				result, err := gojsonschema.Validate(schema, doc)
 				if err != nil {
 					validRequest = false
