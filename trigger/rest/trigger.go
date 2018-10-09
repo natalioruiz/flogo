@@ -215,7 +215,6 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 				result, err := gojsonschema.Validate(schema, doc)
 				log.Infof("DOC: %v", doc)
 				log.Infof("SCHEMA: %v", schema)
-				log.Infof("VALID: %v", result.Valid())
 				if err != nil {
 					validRequest = false
 					log.Errorf("Error: %v", err)
