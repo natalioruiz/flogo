@@ -213,10 +213,14 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 				doc := gojsonschema.NewRawLoader(triggerData["content"])
 				schema := gojsonschema.NewStringLoader(schema)
 				result, err := gojsonschema.Validate(schema, doc)
+				log.Infof("DOC: %v", doc)
+				log.Infof("SCHEMA: %v", schema)
 				if err != nil {
 					validRequest = false
 				} else {
+					log.Debug("Checking doc against schema")
 					if !result.Valid() {
+						log.Debug("Request is valid")
 						validRequest = false
 						var errorsList []string
 						for _, e := range result.Errors() {
