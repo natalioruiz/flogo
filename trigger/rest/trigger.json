@@ -2,7 +2,7 @@
   "name": "rest",
   "type": "flogo:trigger",
   "ref": "github.com/natalioruiz/flogo/trigger/rest",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "title": "HTTP Message (with Headers)",
   "description": "Simple REST Trigger",
   "homepage": "https://github.com/natalioruiz/flogo/tree/master/trigger/rest",
@@ -64,8 +64,11 @@
       },
       {
         "name": "schema",
-        "type": "any",
-        "required": true
+        "type": "object"
+      },
+      {
+        "name": "headers",
+        "type": "array"
       }
     ]
   }
