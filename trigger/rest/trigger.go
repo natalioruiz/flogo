@@ -210,7 +210,7 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 		if validHeaders {
 			validRequest := true
 			if schema != "" {
-				doc := gojsonschema.NewRawLoader(jsonData)
+				doc := gojsonschema.NewRawLoader(triggerData["content"])
 				schema := gojsonschema.NewStringLoader(schema)
 				result, err := gojsonschema.Validate(schema, doc)
 				if err != nil {
