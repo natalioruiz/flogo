@@ -64,11 +64,11 @@
       },
       {
         "name": "schema",
-        "type": "object"
+        "type": "any"
       },
       {
         "name": "headers",
-        "type": "array"
+        "type": "any"
       }
     ]
   }
