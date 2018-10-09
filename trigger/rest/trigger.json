@@ -11,6 +11,10 @@
       "name": "port",
       "type": "integer",
       "required": true
+    },
+    {
+      "name": "validator",
+      "type": "any"
     }
   ],
   "output": [
@@ -64,11 +68,11 @@
       },
       {
         "name": "schema",
-        "type": "any"
+        "type": "string"
       },
       {
         "name": "headers",
-        "type": "any"
+        "type": "string"
       }
     ]
   }
