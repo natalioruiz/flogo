@@ -61,6 +61,11 @@
         "name": "path",
         "type": "string",
         "required" : true
+      },
+      {
+        "name": "schema",
+        "type": "any",
+        "required": true
       }
     ]
   }
