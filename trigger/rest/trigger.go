@@ -218,6 +218,7 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 				log.Infof("VALID: %v", result.Valid())
 				if err != nil {
 					validRequest = false
+					log.Errorf("Error: %v", err)
 				} else {
 					log.Debug("Checking doc against schema")
 					if !result.Valid() {
