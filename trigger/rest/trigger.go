@@ -218,14 +218,14 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 
 		if err != nil {
 			log.Debugf("REST Trigger Error: %s", err.Error())
-			w.WriteHeader(http.StatusInternalServerError)
-			w.Header().Set("Content-Type", "application/json")
-
 			resp := make(map[string]interface{})
 			resp["code"] = 500
 			resp["message"] = err.Error()
 			jsonstring, _ := json.Marshal(resp)
-			w.Write([]byte(jsonstring))
+
+			w.Header().Set("Content-Type", "application/json")
+			w.WriteHeader(http.StatusInternalServerError)
+			w.Write(jsonstring)
 			return
 		}
 
