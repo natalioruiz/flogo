@@ -278,7 +278,7 @@ func handleRequest(handler *trigger.Handler, triggerData map[string]interface{},
 	header := triggerData["header"].(map[string]string)
 	for _, rh := range strings.Split(requiredHeaders, ",") {
 		if _, ok := header[strings.TrimSpace(rh)]; !ok {
-			err := fmt.Errorf("Missing required header: '%s'", rh)
+			err := fmt.Errorf("Missing required header: '%s'", strings.TrimSpace(rh))
 			return nil, err
 		}
 	}
