@@ -158,16 +158,6 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 			"header":      header,
 		}
 
-		validHeaders := true
-		errorMessage := ""
-		for _, rh := range strings.Split(requiredHeaders, ",") {
-			if _, ok := header[strings.TrimSpace(rh)]; !ok {
-				validHeaders = false
-				errorMessage = fmt.Sprintf("Missing required header: '%s'", rh)
-				break
-			}
-		}
-
 		// Check the HTTP Header Content-Type
 		contentType := r.Header.Get("Content-Type")
 		switch contentType {
@@ -205,40 +195,7 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 			triggerData["content"] = content
 		}
 
-		results := make(map[string]*data.Attribute)
-		var err error
-		if validHeaders {
-			validRequest := true
-			if schema != "" {
-				bytes, _ := json.Marshal(triggerData["content"])
-				doc := gojsonschema.NewStringLoader(string(bytes))
-				schema := gojsonschema.NewStringLoader(schema)
-				result, err := gojsonschema.Validate(schema, doc)
-				log.Infof("DOC: %v", doc)
-				log.Infof("SCHEMA: %v", schema)
-				if err != nil {
-					validRequest = false
-					log.Errorf("Error: %v", err)
-				} else {
-					log.Info("Checking doc against schema")
-					if !result.Valid() {
-						log.Info("Request is invalid")
-						validRequest = false
-						var errorsList []string
-						for _, e := range result.Errors() {
-							errorsList = append(errorsList, fmt.Sprintf("%s", e))
-						}
-						err = errors.New(strings.Join(errorsList, "\n"))
-						log.Errorf("ERROR: %v", err)
-					}
-				}
-			}
-			if validRequest {
-				results, err = handler.Handle(context.Background(), triggerData)
-			}
-		} else {
-			err = errors.New(errorMessage)
-		}
+		results, err := handleRequest(handler, triggerData, schema, requiredHeaders)
 
 		var replyData interface{}
 		var replyCode int
@@ -259,7 +216,6 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 			}
 		}
 
-		log.Errorf("ERROR: %v", err.Error())
 		if err != nil {
 			log.Debugf("REST Trigger Error: %s", err.Error())
 			http.Error(w, err.Error(), http.StatusBadRequest)
@@ -309,6 +265,39 @@ func validateHandler(triggerId string, handler *trigger.Handler) error {
 	//validate path
 
 	return nil
+}
+
+func handleRequest(handler *trigger.Handler, triggerData map[string]interface{}, schema string, requiredHeaders string) (map[string]*data.Attribute, error) {
+	header := triggerData["header"].(map[string]string)
+	for _, rh := range strings.Split(requiredHeaders, ",") {
+		if _, ok := header[strings.TrimSpace(rh)]; !ok {
+			err := fmt.Errorf("Missing required header: '%s'", rh)
+			return nil, err
+		}
+	}
+
+	if schema != "" {
+		bytes, _ := json.Marshal(triggerData["content"])
+		doc := gojsonschema.NewStringLoader(string(bytes))
+		schema := gojsonschema.NewStringLoader(schema)
+		result, err := gojsonschema.Validate(schema, doc)
+		log.Infof("DOC: %v", doc)
+		log.Infof("SCHEMA: %v", schema)
+		if err != nil {
+			return nil, err
+		}
+		if !result.Valid() {
+			log.Info("Request is invalid")
+			var errorsList []string
+			for _, e := range result.Errors() {
+				errorsList = append(errorsList, fmt.Sprintf("%s", e))
+			}
+			err = errors.New(strings.Join(errorsList, "\n"))
+			return nil, err
+		}
+	}
+	results, err := handler.Handle(context.Background(), triggerData)
+	return results, err
 }
 
 func stringInList(str string, list []string) bool {
