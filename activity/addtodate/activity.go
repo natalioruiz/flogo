@@ -46,13 +46,14 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	date := time.Now()
 
-	if ivDate != "" {
-		date, _ = time.Parse("2006-01-02", ivDate)
-	}
-
 	if ivFormat == "" {
 		ivFormat = "2006-01-02"
 	}
+
+	if ivDate != "" {
+		date, _ = time.Parse(ivFormat, ivDate)
+	}
+	log.Infof("Date before: %s", date.Format(ivFormat))
 	switch ivUnits {
 	case "days":
 		date = date.AddDate(0, 0, 1*ivNumber)
@@ -71,5 +72,6 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	// Set the output value in the context
 	context.SetOutput(result, date.Format(ivFormat))
 
+	log.Infof("Date after: %s", date.Format(ivFormat))
 	return true, nil
 }
