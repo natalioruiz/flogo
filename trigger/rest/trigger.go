@@ -222,13 +222,14 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 				} else {
 					log.Info("Checking doc against schema")
 					if !result.Valid() {
-						log.Info("Request is valid")
+						log.Info("Request is invalid")
 						validRequest = false
 						var errorsList []string
 						for _, e := range result.Errors() {
 							errorsList = append(errorsList, fmt.Sprintf("%s", e))
 						}
 						err = errors.New(strings.Join(errorsList, "\n"))
+						log.Errorf("ERROR: %v", err)
 					}
 				}
 			}
@@ -258,6 +259,7 @@ func newActionHandler(rt *RestTrigger, handler *trigger.Handler, schema string, 
 			}
 		}
 
+		log.Errorf("ERROR: %v", err.Error())
 		if err != nil {
 			log.Debugf("REST Trigger Error: %s", err.Error())
 			http.Error(w, err.Error(), http.StatusBadRequest)
