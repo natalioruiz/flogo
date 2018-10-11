@@ -1,0 +1,31 @@
+{
+    "name": "datediff",
+    "type": "flogo:activity",
+    "ref": "github.com/natalioruiz/flogo/activity/datediff",
+    "version": "0.0.1",
+    "title": "Add to Date",
+    "description": "Add a specified number of units to a date",
+    "author": "retgits",
+    "homepage": "https://github.com/natalioruiz/flogo/tree/master/activity/datediff",
+    "inputs":[
+      {
+        "name": "date1",
+        "type": "string"
+      },
+      {
+        "name": "date2",
+        "type": "string"
+      },
+      {
+        "name": "units",
+        "type": "string",
+        "allowed" : ["years", "months", "days", "hours", "minutes", "seconds"]
+      }
+    ],
+    "outputs": [
+      {
+        "name": "result",
+        "type": "integer"
+      }
+    ]
+  }

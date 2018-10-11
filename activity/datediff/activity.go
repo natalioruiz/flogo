@@ -50,10 +50,6 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 		ivFormat = "2006-01-02"
 	}
 
-	log.Infof("Number: %s", ivNumber)
-	log.Infof("Unit: %s", ivUnits)
-	log.Infof("Date: %s", ivDate)
-	log.Infof("Format: %s", ivFormat)
 	if ivDate != "" {
 		date, _ = time.Parse(ivFormat, ivDate)
 	}
