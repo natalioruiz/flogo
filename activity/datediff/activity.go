@@ -59,7 +59,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	}
 
 	log.Infof("Date 1: %s", date1.Format(ivFormat1))
-	log.Infof("Date 2: %s", date1.Format(ivFormat2))
+	log.Infof("Date 2: %s", date2.Format(ivFormat2))
 
 	d := date2.Sub(date1)
 	var output float64
@@ -75,7 +75,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	}
 
 	// Set the output value in the context
-	context.SetOutput(result, output)
+	context.SetOutput(result, int(output))
 
 	log.Infof("Difference: %s %s", output, ivUnits)
 	return true, nil
