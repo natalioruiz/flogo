@@ -1,12 +1,12 @@
 {
-    "name": "writefile",
+    "name": "writeline",
     "type": "flogo:activity",
-    "ref": "github.com/retgits/flogo-components/activity/writetofile",
+    "ref": "github.com/natalioruiz/flogo/activity/writetofile",
     "version": "0.0.1",
-    "title": "Write file",
+    "title": "Write line",
     "description": "Write to a file with lines",
     "author": "retgits",
-    "homepage": "https://github.com/retgits/flogo-components/tree/master/activity/writetofile",
+    "homepage": "https://github.com/natalioruiz/flogo/tree/master/activity/writetofile",
     "inputs": [
         {
             "name": "filename",
