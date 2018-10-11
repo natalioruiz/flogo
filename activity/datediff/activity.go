@@ -49,7 +49,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 	}
 
 	if ivFormat2 == "" {
-		ivFormat1 = "2006-01-02 15:04:05.000"
+		ivFormat2 = "2006-01-02 15:04:05.000"
 	}
 
 	date1, _ := time.Parse(ivFormat1, ivDate1)
