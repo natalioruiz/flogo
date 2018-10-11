@@ -10,15 +10,14 @@ import (
 
 // Constants used by the code to represent the input and outputs of the JSON structure
 const (
-	number = "number"
-	units  = "units"
-	date   = "date"
-	format = "format"
+	date1  = "date1"
+	date2  = "date2"
+	unit   = "unit"
 	result = "result"
 )
 
 // log is the default package logger
-var log = logger.GetLogger("activity-addtodate")
+var log = logger.GetLogger("activity-datediff")
 
 // MyActivity is a stub for your Activity implementation
 type MyActivity struct {
@@ -39,39 +38,45 @@ func (a *MyActivity) Metadata() *activity.Metadata {
 func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	// Get the inputs
-	ivNumber := context.GetInput(number).(int)
-	ivUnits := context.GetInput(units).(string)
-	ivDate := context.GetInput(date).(string)
-	ivFormat := context.GetInput(format).(string)
+	ivDate1 := context.GetInput("date1").(string)
+	ivFormat1 := context.GetInput("format1").(string)
+	ivDate2 := context.GetInput("date2").(string)
+	ivFormat2 := context.GetInput("format2").(string)
+	ivUnits := context.GetInput("units").(string)
 
-	date := time.Now()
-
-	if ivFormat == "" {
-		ivFormat = "2006-01-02"
+	if ivFormat1 == "" {
+		ivFormat1 = "2006-01-02 15:04:05.000"
 	}
 
-	if ivDate != "" {
-		date, _ = time.Parse(ivFormat, ivDate)
+	if ivFormat2 == "" {
+		ivFormat1 = "2006-01-02 15:04:05.000"
 	}
-	log.Infof("Date before: %s", date.Format(ivFormat))
+
+	date1, _ := time.Parse(ivFormat1, ivDate1)
+	date2 := time.Now()
+	if ivDate2 != "" {
+		date2, _ = time.Parse(ivFormat2, ivDate2)
+	}
+
+	log.Infof("Date 1: %s", date1.Format(ivFormat1))
+	log.Infof("Date 2: %s", date1.Format(ivFormat2))
+
+	d := date2.Sub(date1)
+	var output float64
 	switch ivUnits {
-	case "days":
-		date = date.AddDate(0, 0, 1*ivNumber)
-	case "months":
-		date = date.AddDate(0, 1*ivNumber, 0)
-	case "years":
-		date = date.AddDate(1*ivNumber, 0, 0)
 	case "hours":
-		date = date.Add(time.Duration(ivNumber) * time.Hour)
+		output = d.Hours()
 	case "minutes":
-		date = date.Add(time.Duration(ivNumber) * time.Minute)
+		output = d.Minutes()
 	case "seconds":
-		date = date.Add(time.Duration(ivNumber) * time.Second)
+		output = d.Seconds()
+	case "millis":
+		output = d.Seconds() * 1e3
 	}
 
 	// Set the output value in the context
-	context.SetOutput(result, date.Format(ivFormat))
+	context.SetOutput(result, output)
 
-	log.Infof("Date after: %s", date.Format(ivFormat))
+	log.Infof("Difference: %s %s", output, ivUnits)
 	return true, nil
 }

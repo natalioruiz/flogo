@@ -13,13 +13,21 @@
         "type": "string"
       },
       {
+        "name": "format1",
+        "type": "string"
+      },
+      {
         "name": "date2",
+        "type": "string"
+      },
+      {
+        "name": "format2",
         "type": "string"
       },
       {
         "name": "units",
         "type": "string",
-        "allowed" : ["years", "months", "days", "hours", "minutes", "seconds"]
+        "allowed" : ["hours", "minutes", "seconds", "millis"]
       }
     ],
     "outputs": [
