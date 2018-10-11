@@ -1,5 +1,5 @@
-// Package addtodate adds a specified number of units to a date.
-package addtodate
+// Package datediff adds a specified number of units to a date.
+package datediff
 
 import (
 	"io/ioutil"

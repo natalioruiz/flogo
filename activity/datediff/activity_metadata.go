@@ -1,4 +1,4 @@
-package addtodate
+package datediff
 
 import (
 	"github.com/TIBCOSoftware/flogo-lib/core/activity"
