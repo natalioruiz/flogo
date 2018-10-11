@@ -75,7 +75,7 @@ func (a *MyActivity) Eval(context activity.Context) (done bool, err error) {
 
 	defer file.Close()
 
-	content = strings.Replace("\\n", "\n", -1)
+	content = strings.Replace(content, "\\n", "\n", -1)
 
 	if _, err = file.WriteString(content); err != nil {
 		context.SetOutput(ovResult, err.Error())
